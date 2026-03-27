@@ -2,6 +2,10 @@
 
 Aplicacção desenvolvida em **Python** para gerenciamento de tarefas, com interface web utilizando **Streamlit**.
 
+## 🌐 Acesse o projeto online
+
+📎 [Clique aqui para acessar o app](https://task-manager-python-4ht9rxwzrzrczetkr9dsbo.streamlit.app/)
+
 ---
 
 ## 📸 Preview
