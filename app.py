@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import matplotlib.pyplot as plt 
 
-# carregar tarefas 
+## carregar tarefas 
 
 def carregar_tarefas():
     try:
@@ -13,50 +13,63 @@ def carregar_tarefas():
     
 tarefas = carregar_tarefas()
 
-st.title("Task Manager")
+## coluna1 tarefas // coluna2 dados e gráfico
 
-# Mostrar tarefas 
+st.title("📋 Task Manager Dashboard")
+st.caption("Gerencie suas tarefas e acompanhe sua produtividade")
 
-st.subheader("Tarefas")
+col1, col2 = st.columns(2)
 
-for i, tarefa in enumerate(tarefas):
-   concluida = st.checkbox(
-      tarefa["titulo"],
-      value = tarefa["concluida"],
-      key = i
-   )
+with col1:
+     st.subheader("📝 Tarefas")
 
-   tarefas[i]["concluida"] = concluida
+     for i, tarefa in enumerate(tarefas):
+        concluida = st.checkbox(
+            tarefa["titulo"],
+            value = tarefa["concluida"],
+            key = i
+        )
+        tarefas[i]["concluida"] = concluida
+
+with col2:
+   st.subheader("📊Estatísticas")
+
+   total = len(tarefas)
+   concluidas =  sum(1 for t in tarefas if t["concluida"])
+   pendentes = total - concluidas
+
+   st.write(f"Total: {total}")
+   st.write(f"Concluídas: {concluidas}")
+   st.write(f"Pendentes: {pendentes}")
+
+
+   if total > 0:
+      fig, ax = plt.subplots()
+      ax.bar(["Concluídas", "Pendentes"],[concluidas, pendentes])
+      st.pyplot(fig)
+
+## Adicionar tarefa
+
+st.subheader("➕Nova tarefa")
+
+with st.form("nova_tarefa_form"):
+   titulo = st.text_input("Título da tarefa")
+   submitted = st.form_submit_button("Incluir")
+
+   if submitted and titulo:
+      nova_tarefa = {
+         "titulo": titulo,
+         "concluida": False
+      }
+
+      tarefas.append(nova_tarefa)
+
+      with open("tarefas.json", "w") as arquivo:
+         json.dump(tarefas, arquivo, indent=4)
+
+         st.success("Tarefa Adiconada!")
+
+## salvar alterações
 
 with open("tarefas.json", "w") as arquivo:
    json.dump(tarefas, arquivo, indent=4)
-
-# grafico
-
-st.subheader("📊Estatísticas")
-
-total = len(tarefas)
-concluidas = sum(1 for t in tarefas if t["concluida"])
-pendentes = total - concluidas
-
-if total > 0:
-   fig, ax = plt.subplots()
-   ax.bar(["Concluídas", "Pendentes"], [concluidas, pendentes])
-   st.pyplot(fig)
-   
-st.subheader("➕Nova tarefa")
-
-titulo = st.text_input("Título da tarefa")
-
-if st.button("Adicionar"):
-   nova_tarefa = {
-      "titulo": titulo,
-      "concluida": False
-   }
-
-   tarefas.append(nova_tarefa)
-
-   with open("tarefas.json", "w") as arquivo:
-      json.dump(tarefas, arquivo, indent=4)
-      st.success("Tarefa adicionada!")
-   

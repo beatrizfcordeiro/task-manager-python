@@ -20,5 +20,9 @@
         "prioridade": "m\u00e9dia",
         "data_limite": "10/04/2026",
         "categoria": "Acad\u00eamica"
+    },
+    {
+        "titulo": "Lavar o carro",
+        "concluida": false
     }
 ]
