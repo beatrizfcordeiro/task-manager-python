@@ -30,15 +30,22 @@ with col1:
      st.subheader("📝 Tarefas")
 
      for i, tarefa in enumerate(tarefas):
-        concluida = st.checkbox(
-            tarefa["titulo"],
-            value = tarefa["concluida"],
-            key = i
-        )
-        tarefas[i]["concluida"] = concluida
+        col_task, col_delete = st.columns([4, 1])
 
-        if concluida and not tarefa["concluida"]:
-            st.success(f"{tarefa['titulo']} concluída!")
+        with col_task:
+           concluida = st.checkbox(
+              tarefa["titulo"],
+              value=tarefa["concluida"],
+              key=f"check_{i}"
+           )
+
+           tarefas[i]["concluida"] = concluida
+
+        with col_delete:
+           if st.button("🗑️", key=f"del_{i}"):
+              tarefas.pop(i)
+              st.rerun()
+           
 
 with col2:
    st.subheader("📊Estatísticas")
