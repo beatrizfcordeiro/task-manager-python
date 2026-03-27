@@ -38,7 +38,7 @@ with col1:
         tarefas[i]["concluida"] = concluida
 
         if concluida and not tarefa["concluida"]:
-            st.success(f"{tarefa[titulo]} concluída!")
+            st.success(f"{tarefa['titulo']} concluída!")
 
 with col2:
    st.subheader("📊Estatísticas")
