@@ -2,9 +2,15 @@
 
 Aplicacção desenvolvida em **Python** para gerenciamento de tarefas, com interface web utilizando **Streamlit**.
 
+---
+---
+
 ## 📸 Preview
 
 ![App Preview](grafico.png)
+
+---
+---
 
 ##  🚀 Funcionalidades
 
