@@ -13,10 +13,16 @@ def carregar_tarefas():
     
 tarefas = carregar_tarefas()
 
+## ordenar: pendente primeiro
+
+tarefas =  sorted(tarefas, key=lambda x:x["concluida"])
+
 ## coluna1 tarefas // coluna2 dados e gráfico
 
 st.title("📋 Task Manager Dashboard")
-st.caption("Gerencie suas tarefas e acompanhe sua produtividade")
+st.caption("Gerencie suas tarefas e acompanhe sua produtividade em tempo real")
+
+st.divider()
 
 col1, col2 = st.columns(2)
 
@@ -30,6 +36,9 @@ with col1:
             key = i
         )
         tarefas[i]["concluida"] = concluida
+
+        if concluida and not tarefa["concluida"]:
+            st.success(f"{tarefa[titulo]} concluída!")
 
 with col2:
    st.subheader("📊Estatísticas")

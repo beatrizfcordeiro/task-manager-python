@@ -8,13 +8,6 @@
         "concluida": false
     },
     {
-        "titulo": "Lavar as roupas",
-        "concluida": true,
-        "prioridade": "M\u00e9dia",
-        "data_limite": "30/03/2026",
-        "categoria": "Roupas"
-    },
-    {
         "titulo": "Fazer o trabalho de filosofia ",
         "concluida": false,
         "prioridade": "m\u00e9dia",
@@ -24,5 +17,12 @@
     {
         "titulo": "Lavar o carro",
         "concluida": false
+    },
+    {
+        "titulo": "Lavar as roupas",
+        "concluida": true,
+        "prioridade": "M\u00e9dia",
+        "data_limite": "30/03/2026",
+        "categoria": "Roupas"
     }
 ]
