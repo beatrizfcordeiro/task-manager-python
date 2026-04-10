@@ -45,7 +45,7 @@ with col1:
            if st.button("🗑️", key=f"del_{i}"):
               tarefas.pop(i)
               
-              with open("tarefas.json", w) as arquivo:
+              with open("tarefas.json", "w") as arquivo:
                  json.dump(tarefas, arquivo, indent=4)
 
                  st.rerun()

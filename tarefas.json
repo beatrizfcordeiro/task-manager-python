@@ -4,10 +4,6 @@
         "concluida": false
     },
     {
-        "titulo": "Arrumar o quarto",
-        "concluida": false
-    },
-    {
         "titulo": "Fazer o trabalho de filosofia ",
         "concluida": false,
         "prioridade": "m\u00e9dia",
@@ -17,6 +13,10 @@
     {
         "titulo": "Lavar o carro",
         "concluida": false
+    },
+    {
+        "titulo": "Arrumar o quarto",
+        "concluida": true
     },
     {
         "titulo": "Lavar as roupas",
