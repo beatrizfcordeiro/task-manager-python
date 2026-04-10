@@ -44,8 +44,11 @@ with col1:
         with col_delete:
            if st.button("🗑️", key=f"del_{i}"):
               tarefas.pop(i)
-              st.rerun()
-           
+              
+              with open("tarefas.json", w) as arquivo:
+                 json.dump(tarefas, arquivo, indent=4)
+
+                 st.rerun()
 
 with col2:
    st.subheader("📊Estatísticas")
