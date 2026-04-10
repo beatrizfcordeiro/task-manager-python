@@ -37,21 +37,38 @@ def listar_tarefas(tarefas):
         return
     for i, tarefa in enumerate(tarefas):
         status =  '✅' if tarefa ['concluida'] else '❌'
-        print(f'{i} - {tarefa['titulo']}[{status}]')
+        print(f"{i} - {tarefa['titulo']}[{status}]")
 
 def concluir_tarefa(tarefas):
     listar_tarefas(tarefas)
 
-    indice = int(input('Digite o número da tarefa: '))
+    try:
+        indice = int(input('Digite o número da tarefa: '))
 
-    tarefas[indice]['concluida'] = True
+        if 0<= indice < len(tarefas):
+            tarefas[indice]['concluida'] = True
+            print('Tarefa concluída!')
+        else:
+            print('Índice inválido.')
+    
+    except:
+        print('Entrada inválida.')
 
 def deletar_tarefa(tarefas):
     listar_tarefas(tarefas)
 
-    indice = int(input('Daigite o número da tarefa: '))
+    try:
+        indice = int(input('Digite o número da tarefa: '))
 
-    tarefas.pop(indice)
+        if 0<= indice < len(tarefas):
+            tarefas.pop(indice)
+            print('Tarefa deletada com sucesso!')
+        else: 
+            print('Índice inválido.')
+
+    except:
+        print('Entrada inválida.')
+
 
 def mostrar_estatisticas(tarefas):
     total = len(tarefas)
@@ -75,7 +92,7 @@ def mostrar_estatisticas(tarefas):
     print(f"Pendentes: {pendentes}.")
     print(f"Progresso: {porcentagem:.2f}%.")
 
-def gerar_grafico(tarefa):
+def gerar_grafico(tarefas):
     total = len(tarefas)
 
     if total == 0:
