@@ -1,6 +1,6 @@
 # 📋 Task Manager App 
 
-Aplicacção desenvolvida em **Python** para gerenciamento de tarefas, com interface web utilizando **Streamlit**.
+Aplicação desenvolvida em **Python** para gerenciamento de tarefas, com interface web utilizando **Streamlit**.
 
 ## 🌐 Acesse o projeto online
 
