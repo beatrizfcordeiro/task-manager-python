@@ -98,7 +98,7 @@ with st.form("nova_tarefa_form", clear_on_submit=True):
       with open("tarefas.json", "w") as arquivo: 
          json.dump(tarefas, arquivo, indent=4)
 
-         st.succes("Tarefa adicionada!")
+         st.success("Tarefa adicionada!")
          st.rerun()
 
 ## salvar alterações
