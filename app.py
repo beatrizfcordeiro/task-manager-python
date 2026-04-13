@@ -49,7 +49,7 @@ with st.sidebar:
       fig, ax = plt.subplots()
       ax.bar(["Concluídas", "Pendentes"], [concluidas, pendentes])
       ax.set_title("Progresso das tarefas")
-      st.puplot(fig)
+      st.pyplot(fig)
 
 col1 = st.container()
 
