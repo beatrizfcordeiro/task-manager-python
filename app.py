@@ -43,6 +43,8 @@ with st.sidebar:
    st.metric("Concluídas", concluidas)
    st.metric("Pendentes", pendentes)
 
+   ## gráfico
+
    if total > 0:
       fig, ax = plt.subplots()
       ax.bar(["Concluídas", "Pendentes"], [concluidas, pendentes])
@@ -52,7 +54,8 @@ with st.sidebar:
 col1 = st.container()
 
 with col1:
-     st.subheader("📝 Tarefas")
+     st.markdown("## Suas tarefas")
+     st.caption("Clique para concluir ou deletar")
 
      for i, tarefa in enumerate(tarefas):
         col_task, col_delete = st.columns([4, 1])
@@ -77,11 +80,34 @@ with col1:
 
 ## Adicionar tarefa
 
-st.subheader("➕Nova tarefa")
+st.markdown("➕Nova tarefa")
 
-with st.form("nova_tarefa_form"):
-   titulo = st.text_input("Título da tarefa")
-   submitted = st.form_submit_button("Incluir")
+with st.form("nova_tarefa_form", clear_on_submit=True):
+   titulo = st.text_input("Digite sua tarefa")
+   
+   submitted = st.form_submit_button("Adicionar")
+   
+   if submitted and titulo:
+      nova_tarefa = {
+         "titulo": titulo, 
+         "concluida": False
+      }
+
+      tarefas.append(nova_tarefa)
+
+      with open("tarefas.json", "w") as arquivo: 
+         json.dump(tarefas, arquivo, indent=4)
+
+         st.succes("Tarefa adicionada!")
+         st.rerun()
+
+## salvar alterações
+with open("tarefas.json", "w") as arquivo:
+   json.dump(tarefas, arquivo, indent=4) 
+   
+   with st.form("nova_tarefa_form"):
+      titulo = st.text_input("Título da tarefa")
+      submitted = st.form_submit_button("Incluir")
 
    if submitted and titulo:
       nova_tarefa = {
@@ -95,8 +121,3 @@ with st.form("nova_tarefa_form"):
          json.dump(tarefas, arquivo, indent=4)
 
          st.success("Tarefa Adiconada!")
-
-## salvar alterações
-
-with open("tarefas.json", "w") as arquivo:
-   json.dump(tarefas, arquivo, indent=4)
