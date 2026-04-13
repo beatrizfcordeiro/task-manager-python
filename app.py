@@ -105,11 +105,11 @@ with st.form("nova_tarefa_form", clear_on_submit=True):
 with open("tarefas.json", "w") as arquivo:
    json.dump(tarefas, arquivo, indent=4) 
    
-   with st.form("nova_tarefa_form"):
+with st.form("nova_tarefa_form"):
       titulo = st.text_input("Título da tarefa")
       submitted = st.form_submit_button("Incluir")
 
-   if submitted and titulo:
+if submitted and titulo:
       nova_tarefa = {
          "titulo": titulo,
          "concluida": False
