@@ -2,6 +2,14 @@ import streamlit as st
 import json
 import matplotlib.pyplot as plt 
 
+## sidebar 
+
+st.set_page_config(
+   page_title="Task Mananger",
+   page_icon="📋",
+   layout="wide"
+)
+
 ## carregar tarefas 
 
 def carregar_tarefas():
@@ -17,14 +25,31 @@ tarefas = carregar_tarefas()
 
 tarefas =  sorted(tarefas, key=lambda x:x["concluida"])
 
-## coluna1 tarefas // coluna2 dados e gráfico
+## coluna1 tarefas 
 
 st.title("📋 Task Manager Dashboard")
 st.caption("Gerencie suas tarefas e acompanhe sua produtividade em tempo real")
 
 st.divider()
 
-col1, col2 = st.columns(2)
+with st.sidebar:
+   st.header("Estatísticas")
+
+   total = len(tarefas)
+   concluidas = sum(1 for t in tarefas if t["concluida"])
+   pendentes = total - concluidas
+
+   st.metric("Total", total)
+   st.metric("Concluídas", concluidas)
+   st.metric("Pendentes", pendentes)
+
+   if total > 0:
+      fig, ax = plt.subplots()
+      ax.bar(["Concluídas", "Pendentes"], [concluidas, pendentes])
+      ax.set_title("Progresso das tarefas")
+      st.puplot(fig)
+
+col1 = st.container()
 
 with col1:
      st.subheader("📝 Tarefas")
@@ -49,23 +74,6 @@ with col1:
                  json.dump(tarefas, arquivo, indent=4)
 
                  st.rerun()
-
-with col2:
-   st.subheader("📊Estatísticas")
-
-   total = len(tarefas)
-   concluidas =  sum(1 for t in tarefas if t["concluida"])
-   pendentes = total - concluidas
-
-   st.write(f"Total: {total}")
-   st.write(f"Concluídas: {concluidas}")
-   st.write(f"Pendentes: {pendentes}")
-
-
-   if total > 0:
-      fig, ax = plt.subplots()
-      ax.bar(["Concluídas", "Pendentes"],[concluidas, pendentes])
-      st.pyplot(fig)
 
 ## Adicionar tarefa
 

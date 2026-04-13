@@ -15,10 +15,6 @@
         "concluida": false
     },
     {
-        "titulo": "Arrumar o quarto",
-        "concluida": true
-    },
-    {
         "titulo": "Lavar as roupas",
         "concluida": true,
         "prioridade": "M\u00e9dia",
